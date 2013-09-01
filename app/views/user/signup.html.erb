@@ -1,0 +1,17 @@
+
+<div class="hero-unit">
+	<%= form_for @user, :url => { :action => 'create' } do |u| %>
+        <%= u.label :name %>
+        <%= u.text_field :name %>
+        <%= u.label :last_name %>
+        <%= u.text_field :lastName %>
+        <%= u.label :email %>
+        <%= u.text_field :email %>
+        <%= u.label :password %>
+        <%= u.password_field :password %>
+        
+        <br/>
+        <%= u.submit "Sign Up" %>
+        
+    <% end %>
+</div>

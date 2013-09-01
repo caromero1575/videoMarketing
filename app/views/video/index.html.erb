@@ -1,0 +1,12 @@
+<div class="hero-unit">
+	<%if @videos.nil?%>
+		<p> No videos available  </p>
+	<%else%>
+		<% @videos.each do |video| %>
+			<%= video.name %>
+			<video src="<%= video.file %>" type="video/mp4" controls>
+				Su navegador no soporta este v&iacute;deo.
+			</video>
+		<% end %>
+	<%end%>
+</div>
