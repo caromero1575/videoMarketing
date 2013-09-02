@@ -3,8 +3,8 @@ VideoCampaign::Application.routes.draw do
   get "user/loginForm"
   get "video/index"
   post "user/create"
-  get "unprocessed_video/uploadForm"
-  post "unprocessed_video/upload"
+  get "video/uploadForm"
+  post "video/upload"
   post "user/login"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
