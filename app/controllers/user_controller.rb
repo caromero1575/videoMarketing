@@ -17,7 +17,9 @@ class UserController < ApplicationController
   end
 
   def login
-    @user = User.find
+    @user = User.find_by_email(params[:email])
+    puts @user
     session[:user_id] = @user.id
+    redirect_to '/'
   end
 end

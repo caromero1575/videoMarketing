@@ -1,13 +1,12 @@
 <div class="hero-unit">
-	<%= form_for @user, :url => { :action => 'login' } do |u| %>
-        
-        <%= u.label :email %>
-        <%= u.text_field :email %>
-        <%= u.label :password %>
-        <%= u.password_field :password %>
+    <%= form_tag( {:action => 'login'}) do  %>
+        <%= label_tag 'E-mail', nil, :for => :email %>
+        <%= text_field_tag :email %>
+        <%= label_tag 'Password', nil, :for => :password %>
+        <%= text_field_tag :password %>
         
         <br/>
-        <%= u.submit "Sign Up" %>
+        <%= submit_tag "Submit" %>
         
     <% end %>
 </div>
