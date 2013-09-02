@@ -11,4 +11,13 @@ class UserController < ApplicationController
         render 'signup'
       end
   end
+
+  def loginForm
+    @user = User.new
+  end
+
+  def login
+    @user = User.find
+    session[:user_id] = @user.id
+  end
 end

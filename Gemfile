@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 # Use mysql as the database for Active Record
-gem 'mysql2'
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -28,7 +28,6 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'protected_attributes'
-
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

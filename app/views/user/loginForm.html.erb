@@ -1,0 +1,13 @@
+<div class="hero-unit">
+	<%= form_for @user, :url => { :action => 'login' } do |u| %>
+        
+        <%= u.label :email %>
+        <%= u.text_field :email %>
+        <%= u.label :password %>
+        <%= u.password_field :password %>
+        
+        <br/>
+        <%= u.submit "Sign Up" %>
+        
+    <% end %>
+</div>
