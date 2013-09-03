@@ -9,6 +9,13 @@ gem 'pg'
 # Use ffmeg for video conversion
 gem 'ffmpeg'
 
+# Use foreman to run background workers
+gem 'foreman'
+
+gem 'delayed_job_active_record'
+
+gem 'delayed_job_web'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
