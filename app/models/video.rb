@@ -1,14 +1,14 @@
 class Video < ActiveRecord::Base
-	attr_accessible :name, :message, :file
+	attr_accessible :name, :message, :file, :user_id, :state
 
 	UNPROCESSED = 0
   	PROCESSED = 1
 
-	#after_save :convert_video
+	after_save :convert_video
 
-	#def convert_video
-	#	self.delay.convertMP4
-	#end
+	def convert_video
+		#self.delay.convertMP4
+	end
 
 	def convertMP4
 		convert self.file, :to => :mp4 do
@@ -18,4 +18,5 @@ class Video < ActiveRecord::Base
 		overwrite_existing_file
 		end.run
 	end
+	
 end
