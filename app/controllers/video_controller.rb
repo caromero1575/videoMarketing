@@ -1,6 +1,7 @@
 class VideoController < ApplicationController
+  
   def index
-  	@video= Video.all
+  	@videos= Video.all
   end
 
   def uploadForm
@@ -12,8 +13,11 @@ class VideoController < ApplicationController
 		@uvideo= Video.new	
     	@uvideo.name = params[:name]
     	@uvideo.message = params[:message]	
-    	uploaded_io = params[:file]
-    	path = Rails.root.join('public', 'uploads', uploaded_io.original_filename);
+    	@uvideo.state = Video.UNPROCESSED
+      @uvideo.user_id = session[:user_id]
+      uploaded_io = params[:file]
+    	
+      path = Rails.root.join('public', 'uploads', uploaded_io.original_filename);
     	File.open(path, 'wb:ASCII-8BIT') do |file|
       		file.write(uploaded_io.read)
     	end

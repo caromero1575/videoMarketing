@@ -18,5 +18,5 @@ class Video < ActiveRecord::Base
 		overwrite_existing_file
 		end.run
 	end
-	
+
 end
