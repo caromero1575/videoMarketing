@@ -3,10 +3,12 @@
 		<p> No videos available  </p>
 	<%else%>
 		<% @videos.each do |video| %>
-			<%= video.name %>
+			<h3><%= video.name %></h3>
+			<br />
 			<video src="<%= video.file %>" type="video/mp4" controls>
 				Su navegador no soporta este v&iacute;deo.
 			</video>
+			<br />
 		<% end %>
 	<%end%>
 </div>
