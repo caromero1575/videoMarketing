@@ -1,12 +1,9 @@
 class VideoController < ApplicationController
-  	
-  	def index
-  		
-  		@video= Video.all
+  def index
+  	@video= Video.all
+  end
 
-  	end
-
- 	def uploadForm
+  def uploadForm
 		@uvideo= Video.new
 	end	
 
@@ -16,7 +13,7 @@ class VideoController < ApplicationController
     	@uvideo.name = params[:name]
     	@uvideo.message = params[:message]	
     	uploaded_io = params[:file]
-    	path = Rails.root.join('public', 'uploads', uploaded_io.original_filename)
+    	path = Rails.root.join('public', 'uploads', uploaded_io.original_filename);
     	File.open(path, 'wb:ASCII-8BIT') do |file|
       		file.write(uploaded_io.read)
     	end
@@ -26,5 +23,4 @@ class VideoController < ApplicationController
     	@uvideo.save
     	redirect_to '/'
 	end
-
 end
