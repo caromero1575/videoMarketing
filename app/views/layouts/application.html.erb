@@ -39,8 +39,15 @@
           <a class="brand" href="/">Video Marketing</a>
           <div class="nav-collapse collapse">
             <ul class="nav pull-right">
+              <%if (session[:user_id].nil?||User.find(session[:user_id]).nil?) %>
               <li><a href="/user/signup">Sign Up</a></li>
               <li><a href="/user/loginForm">Log In</a></li>
+              <% else %>
+              <li><a href="/video/uploadForm">Upload Videos</a></li>
+              <li><a href="/user/videos">My Videos</a></li>
+              <li><%= link_to 'Log Out',  :controller => "user", :action => "logout", :method => "post" %></li>
+              
+              <% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

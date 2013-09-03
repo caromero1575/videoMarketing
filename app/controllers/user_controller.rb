@@ -1,4 +1,5 @@
 class UserController < ApplicationController
+  
   def signup
   	@user= User.new
   end
@@ -20,6 +21,11 @@ class UserController < ApplicationController
     @user = User.find_by_email(params[:email])
     puts @user
     session[:user_id] = @user.id
+    redirect_to '/'
+  end
+
+  def logout
+    session[:user_id] = nil
     redirect_to '/'
   end
 end
