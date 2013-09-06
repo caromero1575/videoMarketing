@@ -16,6 +16,8 @@ gem 'delayed_job_active_record'
 
 gem 'delayed_job_web'
 
+gem 'thin'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
