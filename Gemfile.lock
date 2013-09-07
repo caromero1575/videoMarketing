@@ -154,6 +154,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
+  daemons
   delayed_job_active_record
   delayed_job_web
   ffmpeg

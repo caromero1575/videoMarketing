@@ -1,0 +1,1 @@
+Delayed::Job.attr_accessible :priority, :payload_object, :handler, :run_at, :failed_at

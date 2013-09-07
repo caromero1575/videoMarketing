@@ -6,6 +6,8 @@ VideoCampaign::Application.routes.draw do
   get "video/uploadForm"
   post "video/upload"
   post "user/login"
+  get "/delayed_job" => DelayedJobWeb, :anchor => false
+  post "/delayed_job" => DelayedJobWeb, :anchor => false
 
   get "user/logout"
   # The priority is based upon order of creation: first created -> highest priority.
