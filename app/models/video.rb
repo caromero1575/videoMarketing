@@ -19,6 +19,9 @@ class Video < ActiveRecord::Base
     self.extend FFMpeg
     puts self.file.split(".")[0]+".mp4"
     execute_command "ffmpeg -i public/"+self.file+" public/"+self.file.split(".")[0]+".mp4"
-
+    self.state = PROCESSED
+    self.file =  self.file.split(".")[0]+".mp4"
+    self.save
   end
+
 end

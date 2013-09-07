@@ -28,4 +28,8 @@ class UserController < ApplicationController
     session[:user_id] = nil
     redirect_to '/'
   end
+
+  def videos
+   @videos = Video.find_by_user_id(session[:user_id])
+  end
 end
