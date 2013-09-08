@@ -1,7 +1,7 @@
 
 <div class="hero-unit">
 	<%= form_for @user, :url => { :action => 'create' } do |u| %>
-        <%= u.label :name %>
+        <%= u.label :first_name %>
         <%= u.text_field :name %>
         <%= u.label :last_name %>
         <%= u.text_field :lastName %>

@@ -1,16 +1,27 @@
 <div class="hero-unit">
-  <%if @videos.nil?%>
-      <p> No videos available  </p>
-  <%else%>
-      <% @videos.each do |video| %>
-          <% if video.state = Video::PROCESSED %>
-              <h3><%= video.name %></h3>
-              <br />
-              <video src="<%= video.file %>" type="video/mp4" controls>
-                Su navegador no soporta este v&iacute;deo.
-              </video>
-              <br />
-          <%end%>
-      <% end %>
-  <%end%>
+	<h2>My uploads</h2>
+<% if @videos.nil? %>
+	<p>No videos available</p>
+<% else %>
+	<% @videos.each do |video| %>
+		<% if video.user_id = 1 %>
+			<h3><%= video.name %></h3>
+			<p><%= video.message %></p>
+			<br />
+			<video src="<%= video.target_file.split("public/")[1] %>" type="video/mp4" controls>
+			Your web browser does not support this video format (H.264/AAC).
+			</video>
+			<br />
+			<h4>Status: </h4>
+			<% if video.state = Video::PROCESSED %>
+			Video successfully converted to MP4 (H.264/AAC).
+			<% else %>
+			Video conversion in progress.
+			<% end %>
+			<p>Uploaded on <%= video.created_at %>.</p>
+			<p>Published on <%= video.updated_at %>.</p>
+			<br />
+		<% end %>
+	<% end %>
+<% end %>
 </div>
