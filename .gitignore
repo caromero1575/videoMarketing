@@ -16,4 +16,5 @@
 /tmp
 /config/database.yml
 config/database.yml
-/pubilc/uploads/*
+pubilc/uploads/*
+pubilc/mp4/*
