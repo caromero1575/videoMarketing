@@ -4,13 +4,13 @@
 	<%else%>
 		<% @videos.each do |video| %>
 			<% if video.state = Video::PROCESSED %>
-            <h3><%= video.name %></h3>
-			<br />
-			<video src="<%= video.file %>" type="video/mp4" controls>
+            			<h3><%= video.name %></h3>
+				<br />
+				<video src="<%= video.target_file %>" type="video/mp4" controls>
 				Su navegador no soporta este v&iacute;deo.
-			</video>
-			<br />
-            <%end%>
+				</video>
+				<br />
+            		<%end%>
 		<% end %>
 	<%end%>
 </div>

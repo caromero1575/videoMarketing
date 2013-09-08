@@ -1,10 +1,6 @@
-
 class Video < ActiveRecord::Base
 
-
-  attr_accessible :name, :message, :file, :user_id, :state
-
-
+	attr_accessible :name, :message, :file, :target_file, :user_id, :state
 
 	UNPROCESSED = 0
   	PROCESSED = 1
@@ -12,16 +8,15 @@ class Video < ActiveRecord::Base
 	after_save :convert_video
 
 	def convert_video
-		self.convertMP4
-  end
+		self.delay.convertMP4
+	end
 
 	def convertMP4
-    self.extend FFMpeg
-    puts self.file.split(".")[0]+".mp4"
-    execute_command "ffmpeg -i public/"+self.file+" public/"+self.file.split(".")[0]+".mp4"
-    self.state = PROCESSED
-    self.file =  self.file.split(".")[0]+".mp4"
-    self.save
-  end
+		self.extend FFMpeg
+		puts self.file.split(".")[0] + ".mp4"
+		execute_command "ffmpeg -y -i " + self.file + " -strict experimental " + self.target_file
+		self.state = PROCESSED
+		#self.save
+	end
 
 end

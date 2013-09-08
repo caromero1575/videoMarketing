@@ -1,28 +1,33 @@
 class VideoController < ApplicationController
-  def index
-  	@videos= Video.all
-  end
+	def index
+		@videos = Video.all
+	end
 
-  def uploadForm
-		@uvideo= Video.new
+	def uploadForm
+		@uvideo = Video.new
 	end	
 
 	def upload
-		
-		@uvideo= Video.new	
-    	@uvideo.name = params[:name]
-    	@uvideo.message = params[:message]
-      @uvideo.user_id = session[:user_id]
-      @uvideo.state =  Video::UNPROCESSED
-    	uploaded_io = params[:file]
-    	path = Rails.root.join('public', 'uploads', uploaded_io.original_filename);
-    	File.open(path, 'wb:ASCII-8BIT') do |file|
-      		file.write(uploaded_io.read)
-    	end
+		@uvideo = Video.new	
+		@uvideo.name = params[:name]
+		@uvideo.message = params[:message]
+		@uvideo.user_id = session[:user_id]
+		@uvideo.state =  Video::UNPROCESSED
+		uploaded_io = params[:file]
+		path = Rails.root.join('public', 'uploads', uploaded_io.original_filename);
 
-    	realPath = File.absolute_path(path).split('public/')[1]
-    	@uvideo.file = realPath
-    	@uvideo.save
-    	redirect_to '/'
+		File.open(path, 'wb:ASCII-8BIT') do |file|
+			file.write(uploaded_io.read)
+		end
+	
+		uploadPath = "public/uploads/" + File.absolute_path(path).split('public/uploads/')[1]
+		@uvideo.file = uploadPath
+
+		suffix = File.absolute_path(path).split(".")[1]
+		destPath = "public/mp4/" + File.basename(path, suffix) + "mp4"
+		@uvideo.target_file = destPath
+
+		@uvideo.save
+		redirect_to '/'
 	end
 end
