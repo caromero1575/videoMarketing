@@ -14,7 +14,7 @@ class VideoController < ApplicationController
 		@uvideo.user_id = session[:user_id]
 		@uvideo.state =  Video::UNPROCESSED
 		uploaded_io = params[:file]
-		path = Rails.root.join('public', 'uploads', uploaded_io.original_filename);
+		path = Rails.root.join('public', 'uploads', uploaded_io.original_filename)
 
 		File.open(path, 'wb:ASCII-8BIT') do |file|
 			file.write(uploaded_io.read)
@@ -24,8 +24,10 @@ class VideoController < ApplicationController
 		@uvideo.file = uploadPath
 
 		suffix = File.absolute_path(path).split(".")[1]
-		destPath = "public/mp4/" + File.basename(path, suffix) + "mp4"
+		target_filename = File.basename(path, suffix) + "mp4"
+		destPath = "public/mp4/" + target_filename
 		@uvideo.target_file = destPath
+		Rails.root.join('public', 'mp4', target_filename)
 
 		@uvideo.save
 		redirect_to '/'
