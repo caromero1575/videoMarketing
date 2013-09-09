@@ -4,7 +4,7 @@
 	<p>No videos available</p>
 <% else %>
 	<% @videos.each do |video| %>
-		<% if video.user_id = 1 %>
+		<% if video.user_id == session[:user_id] && video.state == Video::PROCESSED %>
 			<h3><%= video.name %></h3>
 			<p><%= video.message %></p>
 			<br />

@@ -3,7 +3,7 @@
 	<p>No videos available</p>
 <% else %>
 	<% @videos.each do |video| %>
-		<% if video.state = Video::PROCESSED %>
+		<% if video.state == Video::PROCESSED %>
 			<h3><%= video.name %></h3>
 			<br />
 			<video src="<%= video.target_file.split("public/")[1] %>" type="video/mp4" controls>

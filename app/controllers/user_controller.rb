@@ -30,6 +30,6 @@ class UserController < ApplicationController
   end
 
   def videos
-   @videos = Video.find_by_user_id(session[:user_id])
+   @videos = Video.all
   end
 end
