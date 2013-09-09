@@ -15,6 +15,7 @@ class Video < ActiveRecord::Base
 
 	def convertMP4
 		puts self.file.split(".")[0] + ".mp4"
+		self.extend FFMpeg
 		execute_command "ffmpeg -y -i " + self.file + " -strict experimental " + self.target_file
 		self.state = PROCESSED
 		self.save

@@ -4,21 +4,23 @@
 	<p>No videos available</p>
 <% else %>
 	<% @videos.each do |video| %>
-		<% if video.user_id == session[:user_id] && video.state == Video::PROCESSED %>
+		<% if video.user_id == session[:user_id] %>
 			<h3><%= video.name %></h3>
 			<p><%= video.message %></p>
 			<br />
-			<video src="<%= video.target_file.split("public/")[1] %>" type="video/mp4" controls>
+			<video src="<%= video.target_file.split("public")[1] %>" type="video/mp4" controls>
 			Your web browser does not support this video format (H.264/AAC).
 			</video>
 			<br />
-			<p>Status: <% if video.state = Video::PROCESSED %></p>
-			Video successfully converted to MP4 (H.264/AAC).
+			<p>Status: <% if video.state == Video::PROCESSED %>
+				Video successfully converted to MP4 (H.264/AAC).
 			<% else %>
-			Video conversion in progress.
-			<% end %>
+				Video conversion in progress.
+			<% end %></p>
 			<p>Uploaded on <%= video.created_at %>.</p>
-			<p>Published on <%= video.updated_at %>.</p>
+			<% if video.state == Video::PROCESSED %>
+				<p>Published on <%= video.updated_at %>.</p>
+			<% end %>
 			<hr />
 		<% end %>
 	<% end %>
