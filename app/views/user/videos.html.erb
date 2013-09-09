@@ -12,15 +12,14 @@
 			Your web browser does not support this video format (H.264/AAC).
 			</video>
 			<br />
-			<h4>Status: </h4>
-			<% if video.state = Video::PROCESSED %>
+			<p>Status: <% if video.state = Video::PROCESSED %></p>
 			Video successfully converted to MP4 (H.264/AAC).
 			<% else %>
 			Video conversion in progress.
 			<% end %>
 			<p>Uploaded on <%= video.created_at %>.</p>
 			<p>Published on <%= video.updated_at %>.</p>
-			<br />
+			<hr />
 		<% end %>
 	<% end %>
 <% end %>

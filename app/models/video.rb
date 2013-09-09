@@ -8,15 +8,16 @@ class Video < ActiveRecord::Base
 	after_save :convert_video
 
 	def convert_video
-		self.delay.convertMP4
+		if(self.state == UNPROCESSED)
+			self.delay.convertMP4
+		end
 	end
 
 	def convertMP4
-		self.extend FFMpeg
 		puts self.file.split(".")[0] + ".mp4"
 		execute_command "ffmpeg -y -i " + self.file + " -strict experimental " + self.target_file
 		self.state = PROCESSED
-		#self.save
+		self.save
 	end
 
 end
