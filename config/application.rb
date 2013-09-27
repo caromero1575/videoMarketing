@@ -2,9 +2,16 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
+require 'aws/s3'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
+
+AWS::S3::Base.establish_connection!(
+  :access_key_id     => ENV['AMAZON_ACCESS_KEY_ID'],
+  :secret_access_key => ENV['AMAZON_SECRET_ACCESS_KEY']
+)
 
 module VideoCampaign
   class Application < Rails::Application

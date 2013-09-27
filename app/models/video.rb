@@ -16,9 +16,28 @@ class Video < ActiveRecord::Base
 	def convertMP4
 		puts self.file.split(".")[0] + ".mp4"
 		self.extend FFMpeg
+		downloadS3(File.basename(self.file))
 		execute_command "ffmpeg -y -i " + self.file + " -strict experimental " + self.target_file
+		uploadS3(self.target_file)
 		self.state = PROCESSED
 		self.save
 	end
 
+	def uploadS3(path)
+                AWS::S3::S3Object.store(
+                        File.basename(path),
+                        File.open(path),
+                        "cloud-videoMarketing",
+                        :content_type => "application/octet-stream"
+                )
+	end
+
+	def downloadS3(videofile)
+		#puts "videofile: " + videofile
+		open(videofile, 'w+b') do |file|
+			AWS::S3::S3Object.stream(videofile, 'cloud-videoMarketing') do |chunk|
+				file.write chunk
+			end
+		end
+	end
 end
