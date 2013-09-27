@@ -3,7 +3,7 @@ class Video < ActiveRecord::Base
 	attr_accessible :name, :message, :file, :target_file, :user_id, :state
 
 	UNPROCESSED = 0
-  PROCESSED = 1
+	PROCESSED = 1
 
 	after_save :convert_video
 

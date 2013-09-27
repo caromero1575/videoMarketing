@@ -1,3 +1,10 @@
+require 'aws/s3'
+
+AWS::S3::Base.establish_connection!(
+  :access_key_id     => ENV['AMAZON_ACCESS_KEY_ID'],
+  :secret_access_key => ENV['AMAZON_SECRET_ACCESS_KEY']
+)
+
 class VideoController < ApplicationController
 	def index
 		@videos = Video.all
@@ -28,6 +35,17 @@ class VideoController < ApplicationController
 		destPath = "public/mp4/" + target_filename
 		@uvideo.target_file = destPath
 		Rails.root.join('public', 'mp4', target_filename)
+
+
+
+		AWS::S3::S3Object.store(
+			File.basename(path),
+			File.open(path),
+			"cloud-videoMarketing",
+			:content_type => "application/octet-stream"
+		)
+
+
 
 		@uvideo.save
 		redirect_to '/'

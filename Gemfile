@@ -4,7 +4,12 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 # Use postgresql as the database for Active Record
-gem 'pg'
+#gem 'pg'
+
+# Use MySQL as the database for Active Record
+gem 'mysql2'
+
+gem 'aws-s3'
 
 gem 'daemons'
 
