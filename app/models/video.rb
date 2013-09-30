@@ -28,7 +28,9 @@ class Video < ActiveRecord::Base
 			File.basename(path),
 			File.open(path),
 			"cloud-videoMarketing",
-			:content_type => "application/octet-stream"
+			:content_type => "application/octet-stream",
+			:access => :public_read
+
 		)
 	end
 

@@ -6,7 +6,7 @@
 		<% if video.state == Video::PROCESSED %>
 			<h3><%= video.name %></h3>
 			<br />
-			<video src="<%= video.target_file.split("public/")[1] %>" type="video/mp4" controls>
+			<video src="https://s3.amazonaws.com/cloud-videoMarketing/<%= video.target_file.split("public/mp4/")[1] %>" type="video/mp4" controls>
 			Your web browser does not support this video format (H.264/AAC).
 			</video>
 			<br />
