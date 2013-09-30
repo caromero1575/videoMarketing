@@ -24,17 +24,16 @@ class Video < ActiveRecord::Base
 	end
 
 	def uploadS3(path)
-                AWS::S3::S3Object.store(
-                        File.basename(path),
-                        File.open(path),
-                        "cloud-videoMarketing",
-                        :content_type => "application/octet-stream"
-                )
+		AWS::S3::S3Object.store(
+			File.basename(path),
+			File.open(path),
+			"cloud-videoMarketing",
+			:content_type => "application/octet-stream"
+		)
 	end
 
 	def downloadS3(videofile)
-		#puts "videofile: " + videofile
-		open(videofile, 'w+b') do |file|
+		open("public/uploads/" + videofile, 'w+b') do |file|
 			AWS::S3::S3Object.stream(videofile, 'cloud-videoMarketing') do |chunk|
 				file.write chunk
 			end
