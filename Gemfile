@@ -9,7 +9,9 @@ gem 'rails', '4.0.0'
 # Use MySQL as the database for Active Record
 gem 'mysql2'
 
-gem 'aws-s3'
+# Use DynamoDB as the database
+gem 'aws-sdk'
+gem 'dynamoid'
 
 gem 'daemons'
 

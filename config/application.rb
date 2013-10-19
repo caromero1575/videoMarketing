@@ -8,7 +8,7 @@ require 'aws/s3'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
-AWS::S3::Base.establish_connection!(
+AWS.config(
   :access_key_id     => ENV['AMAZON_ACCESS_KEY_ID'],
   :secret_access_key => ENV['AMAZON_SECRET_ACCESS_KEY']
 )

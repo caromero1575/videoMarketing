@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  
+
   def signup
   	@user= User.new
   end
@@ -19,7 +19,6 @@ class UserController < ApplicationController
 
   def login
     @user = User.find_by_email(params[:email])
-    puts @user
     session[:user_id] = @user.id
     redirect_to '/'
   end
@@ -32,4 +31,5 @@ class UserController < ApplicationController
   def videos
    @videos = Video.all
   end
+
 end

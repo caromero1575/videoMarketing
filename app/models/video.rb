@@ -1,6 +1,14 @@
-class Video < ActiveRecord::Base
+class Video
+	include Dynamoid::Document
 
-	attr_accessible :name, :message, :file, :target_file, :user_id, :state
+	table :name => :videos, :key => :id, :read_capacity => 1, :write_capacity => 1
+
+	field :name
+	field :message
+	field :file
+	field :target_file
+	field :state, :integer
+	field :user_id
 
 	UNPROCESSED = 0
 	PROCESSED = 1
@@ -24,20 +32,15 @@ class Video < ActiveRecord::Base
 	end
 
 	def uploadS3(path)
-		AWS::S3::S3Object.store(
-			File.basename(path),
-			File.open(path),
-			"cloud-videoMarketing",
-			:content_type => "application/octet-stream",
-			:access => :public_read
-
-		)
+		key = File.basename(path)
+                AWS::S3.new.buckets['cloud-videoMarketing'].objects[key].write(:file => path, :acl => :public_read)
 	end
 
 	def downloadS3(videofile)
 		open("public/uploads/" + videofile, 'w+b') do |file|
-			AWS::S3::S3Object.stream(videofile, 'cloud-videoMarketing') do |chunk|
-				file.write chunk
+			key = File.basename(videofile)
+                	AWS::S3.new.buckets['cloud-videoMarketing'].objects[key].read do |chunk|
+				file.write(chunk)
 			end
 		end
 	end

@@ -29,12 +29,8 @@ class VideoController < ApplicationController
 		@uvideo.target_file = destPath
 		Rails.root.join('public', 'mp4', target_filename)
 
-		AWS::S3::S3Object.store(
-			File.basename(path),
-			File.open(path),
-			"cloud-videoMarketing",
-			:content_type => "application/octet-stream"
-		)
+		key = File.basename(path)
+		AWS::S3.new.buckets['cloud-videoMarketing'].objects[key].write(:file => path)
 
 		@uvideo.save
 		redirect_to '/'
