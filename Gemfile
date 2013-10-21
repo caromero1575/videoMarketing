@@ -10,7 +10,7 @@ gem 'rails', '4.0.0'
 gem 'mysql2'
 
 # Use DynamoDB as the database
-gem 'aws-sdk'
+gem 'aws-sdk', '= 1.11.1'
 gem 'dynamoid'
 
 gem 'daemons'
@@ -24,6 +24,8 @@ gem 'foreman'
 gem 'delayed_job_active_record'
 
 gem 'delayed_job_web'
+
+gem 'delayed_job_sqs'
 
 gem 'thin'
 
