@@ -31,12 +31,13 @@ class Video
 		self.save
 
 		ses = AWS::SimpleEmailService.new()
-		email = User.find_by_id(session[:user_id]).email
-		identity = ses.identities.verify(email)
-		if (identity.verified?)
-			ses.send_email(
+		email = User.find_by_id(self.user_id).email
+		puts "el EMAAAAAAAAAAAAILLLLLLLLLLLLLLL=====>>>>"+ email +"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+		identity = ses.identities.verify('andresrrey@outlook.es')
+		if(identity.verified?)
+		ses.send_email(
 			:subject => 'Video Marketing video conversion complete',
-			:from => 'noreply@videomarketing.uniandes.edu.co',
+			:from => 'andresrrey@outlook.es',
 			:to => email,
 			:body_text => 'Your video ' + self.name + ' has been converted and is now available.')
 		end
