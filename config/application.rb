@@ -2,16 +2,16 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
-require 'aws/s3'
+require 'delayed_job_sqs'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
-AWS.config(
-  :access_key_id     => ENV['AMAZON_ACCESS_KEY_ID'],
-  :secret_access_key => ENV['AMAZON_SECRET_ACCESS_KEY']
-)
+#AWS.config(
+  #:access_key_id     => ENV['AMAZON_ACCESS_KEY_ID'],
+  #:secret_access_key => ENV['AMAZON_SECRET_ACCESS_KEY']
+#)
 
 module VideoCampaign
   class Application < Rails::Application
