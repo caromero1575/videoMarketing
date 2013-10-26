@@ -3,15 +3,19 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
+gem 'sqlite3'
+
 # Use postgresql as the database for Active Record
 #gem 'pg'
 
 # Use MySQL as the database for Active Record
-gem 'mysql2'
+#gem 'mysql2'
 
 # Use DynamoDB as the database
 gem 'aws-sdk', '= 1.11.1'
 gem 'dynamoid'
+
+gem 'dalli'
 
 gem 'daemons'
 
@@ -21,9 +25,7 @@ gem 'ffmpeg'
 # Use foreman to run background workers
 gem 'foreman'
 
-gem 'delayed_job_active_record'
-
-gem 'delayed_job_web'
+gem 'delayed_job'
 
 gem 'delayed_job_sqs'
 
