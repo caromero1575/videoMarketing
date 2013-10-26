@@ -44,13 +44,13 @@ class Video
 
 	def uploadS3(path)
 		key = File.basename(path)
-                AWS::S3.new.buckets['cloud-videoMarketing'].objects[key].write(:file => path, :acl => :public_read)
+                AWS::S3.new.buckets['cloud-videomarketing'].objects[key].write(:file => path, :acl => :public_read)
 	end
 
 	def downloadS3(videofile)
 		open("public/uploads/" + videofile, 'w+b') do |file|
 			key = File.basename(videofile)
-                	AWS::S3.new.buckets['cloud-videoMarketing'].objects[key].read do |chunk|
+                	AWS::S3.new.buckets['cloud-videomarketing'].objects[key].read do |chunk|
 				file.write(chunk)
 			end
 		end
