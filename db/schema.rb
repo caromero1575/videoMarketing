@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20130908033741) do
     t.datetime "updated_at"
   end
 
-  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
 
   create_table "users", force: true do |t|
     t.string   "name"
